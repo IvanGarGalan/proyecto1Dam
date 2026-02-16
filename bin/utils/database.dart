@@ -19,12 +19,14 @@ abstract class Database {
     }
   }
 
+  //metodo que crea la base de datos
   static _crearDB(conn) async {
     await conn.query('CREATE DATABASE IF NOT EXISTS proyectoDB');
     await conn.query('USE proyectoDB');
     //print('Base de datos creada');
   }
 
+  //metodo que crea la tabla usuarios
   static _crearTablaUsuarios(conn) async {
     await conn.query('''CREATE TABLE IF NOT EXISTS usuarios(
     idUsuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
