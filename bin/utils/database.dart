@@ -12,6 +12,7 @@ abstract class Database {
     try {
       await _crearDB(conn);
       await _crearTablaUsuarios(conn);
+      //await _crearUsuario(conn);
     } catch (e) {
       print(e);
     } finally {
@@ -35,5 +36,14 @@ abstract class Database {
     contrasenna VARCHAR(50) NOT NULL
     )''');
     //print("Tabla de usuarios creada");
+  }
+
+  //metodo que inserta un usuario en la base de datos(PRUEBA)
+  static _crearUsuario(conn) async {
+    await conn.query(
+      'INSERT INTO usuarios(contrasenna,idUsuario,nombreReal,nombreUsuario) values (?,?,?,?)',
+      ["Clave1234567", 1, "Ivan Garcia", "ivangargalan"],
+    );
+    //print("Usuario creado");
   }
 }

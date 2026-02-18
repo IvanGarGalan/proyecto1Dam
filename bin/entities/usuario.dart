@@ -1,4 +1,5 @@
 abstract class Usuario {
+  String? _nombreReal;
   String? _nombreUsuario;
   String? _contrasenna;
 
