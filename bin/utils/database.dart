@@ -38,12 +38,23 @@ abstract class Database {
     //print("Tabla de usuarios creada");
   }
 
-  //metodo que inserta un usuario en la base de datos(PRUEBA)
-  static _crearUsuario(conn) async {
-    await conn.query(
-      'INSERT INTO usuarios(contrasenna,idUsuario,nombreReal,nombreUsuario) values (?,?,?,?)',
-      ["Clave1234567", 1, "Ivan Garcia", "ivangargalan"],
+  //metodo que permite la conexion a la base de datos fuera de la clase.
+  static Future<MySqlConnection> conexionDB() async {
+    var settings = ConnectionSettings(
+      host: _host,
+      port: _port,
+      user: _user,
+      db: 'proyectoDB',
     );
-    //print("Usuario creado");
+    return await MySqlConnection.connect(settings);
   }
+
+  //metodo que inserta un usuario en la base de datos(PRUEBA)
+  // static _crearUsuario(conn) async {
+  //   await conn.query(
+  //     'INSERT INTO usuarios(contrasenna,idUsuario,nombreReal,nombreUsuario) values (?,?,?,?)',
+  //     ["Clave1234567", 1, "Ivan Garcia", "ivangargalan"],
+  //   );
+  //   //print("Usuario creado");
+  //}
 }

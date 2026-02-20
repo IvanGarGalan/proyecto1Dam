@@ -14,6 +14,7 @@ abstract class Menu {
         exit(0); //salida del menu de la apllcacion y del menu
       default:
         stdout.writeln("Opcion no reconocida,vuelve a intentarlo");
+        Menu.menuOpciones(); //TO DO: quitar recursividad
     }
   }
 
