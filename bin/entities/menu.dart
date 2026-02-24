@@ -7,6 +7,7 @@ abstract class Menu {
     switch (opcion) {
       case "1":
         stdout.writeln("Opcion 1 seleccionada");
+        iniciarSesion();
         break;
 
       case "2":
@@ -26,5 +27,16 @@ abstract class Menu {
     2.Salir de la aplicación
 
 ''');
+  }
+
+  //metodo para iniciar sesion en la aplicacion con un usuario y contraseña determionados
+  static void iniciarSesion() async {
+    stdout.writeln('Introduce un nombre de usuario');
+    String usuario = stdin.readLineSync() ?? "";
+    stdout.writeln('Introduce una contraseña');
+    String contra = stdin.readLineSync() ?? "";
+    print(
+      'EL nombrede usuario introducido es $usuario y la contraseña es $contra',
+    );
   }
 }
