@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'entities.dart';
 
 abstract class Menu {
   static void menuOpciones() {
@@ -7,7 +8,7 @@ abstract class Menu {
     switch (opcion) {
       case "1":
         stdout.writeln("Opcion 1 seleccionada");
-        iniciarSesion();
+        iniciarSesionMenu();
         break;
 
       case "2":
@@ -29,14 +30,34 @@ abstract class Menu {
 ''');
   }
 
+  //menu que muestra las opciones despues de iniciar sesion.
+  static void menuUsuario(Map<String, String> datos) {
+    stdout.writeln('''
+    Bienvenido ${datos['usuario']},elige una opcion:
+    1.Ver opciones
+    2.
+    3.
+    4.Salir
+
+''');
+    exit(0);
+  }
+
   //metodo para iniciar sesion en la aplicacion con un usuario y contraseña determionados
-  static void iniciarSesion() async {
+  static void iniciarSesionMenu() async {
     stdout.writeln('Introduce un nombre de usuario');
     String usuario = stdin.readLineSync() ?? "";
     stdout.writeln('Introduce una contraseña');
     String contra = stdin.readLineSync() ?? "";
+    Map<String, String> datos = {'usuario': usuario, 'contra': contra};
+    bool inicio = await Usuario.iniciarSesion(datos);
+    if (inicio) {
+      print('Inicio de sesion correcto');
+      Menu.menuUsuario(datos);
+    }
     print(
-      'EL nombrede usuario introducido es $usuario y la contraseña es $contra',
+      'EL nombre de usuario introducido es $usuario y la contraseña es $contra',
     );
+    exit(0); //TO DO:Quitar este exit
   }
 }

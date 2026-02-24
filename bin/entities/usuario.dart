@@ -6,7 +6,7 @@ abstract class Usuario {
   String? _contrasenna;
 
   //metodo para iniciar sesion en la aplicacion
-  Future<bool> iniciarSesion(Map<String, String> datos) async {
+  static Future<bool> iniciarSesion(Map<String, String> datos) async {
     bool inicioCorrecto = false;
     var conn;
     try {
