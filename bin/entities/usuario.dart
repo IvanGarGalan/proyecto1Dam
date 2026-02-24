@@ -1,6 +1,7 @@
 import '../utils/utils.dart';
 
 abstract class Usuario {
+  int? _idUsuario;
   String? _nombreReal;
   String? _nombreUsuario;
   String? _contrasenna;
