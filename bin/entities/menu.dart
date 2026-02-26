@@ -31,13 +31,17 @@ abstract class Menu {
   }
 
   //menu que muestra las opciones despues de iniciar sesion.
+  //TO DO: Terminar menu:
+  //1. Buscar criaturas con la api,2.Mostrar personajes(e imprimir),3.Creacion de personajes,4.Ver opciones de usuario,5.Salir
+
   static void menuUsuario(Map<String, String> datos) {
     stdout.writeln('''
     Bienvenido ${datos['usuario']},elige una opcion:
-    1.Ver opciones
-    2.
-    3.
-    4.Salir
+    1.Buscar criaturas
+    2.Mostrar personajes
+    3.Creacion de personajes
+    4.Ver opciones de usuario 
+    5.Salir
 
 ''');
     exit(0);
