@@ -3,6 +3,7 @@ import 'entities.dart';
 
 abstract class Menu {
   static void menuOpciones() {
+    while (true) {
     menuInicio();
     String opcion = stdin.readLineSync() ?? "0";
     switch (opcion) {
@@ -13,10 +14,14 @@ abstract class Menu {
 
       case "2":
         stdout.writeln("Opcion 2 seleccionada");
-        exit(0); //salida del menu de la apllcacion y del menu
+        break; 
+      case "3":
+        stdout.writeln("Has salido de la aplicacion");
       default:
         stdout.writeln("Opcion no reconocida,vuelve a intentarlo");
-        Menu.menuOpciones(); //TO DO: quitar recursividad
+
+    }
+      
     }
   }
 

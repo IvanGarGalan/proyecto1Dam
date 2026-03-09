@@ -23,7 +23,7 @@ abstract class Usuario {
     } catch (e) {
       print(e);
     } finally {
-      await conn.close;
+      await conn.close();
     }
     return inicioCorrecto;
   }
