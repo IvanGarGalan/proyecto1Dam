@@ -1,27 +1,38 @@
 import 'dart:io';
 import 'entities.dart';
+import '../utils/utils.dart';
 
 abstract class Menu {
-  static void menuOpciones() {
+  static Future<void> menuOpciones() async {
+    bool salida = false;
     while (true) {
-    menuInicio();
-    String opcion = stdin.readLineSync() ?? "0";
-    switch (opcion) {
-      case "1":
-        stdout.writeln("Opcion 1 seleccionada");
-        iniciarSesionMenu();
-        break;
+      menuInicio();
+      String opcion = stdin.readLineSync() ?? "0";
+      switch (opcion) {
+        case "1":
+          stdout.writeln("Opcion 1 seleccionada");
+          bool inicio = await Menu.iniciarSesionMenu();
+          if (inicio) {
+            print('Inicio de sesion correcto');
+            Menu.menuUsuario();
+          } else {
+            stdout.writeln(
+              'No se ha reconocido el inicio de sesion,vuelve a intentarlo',
+            );
+          }
+          break;
 
-      case "2":
-        stdout.writeln("Opcion 2 seleccionada");
-        break; 
-      case "3":
-        stdout.writeln("Has salido de la aplicacion");
-      default:
-        stdout.writeln("Opcion no reconocida,vuelve a intentarlo");
-
-    }
-      
+        case "2":
+          stdout.writeln("Opcion 2 seleccionada");
+          break;
+        case "3":
+          stdout.writeln("Has salido de la aplicacion");
+          salida = true;
+          break;
+        default:
+          stdout.writeln("Opcion no reconocida,vuelve a intentarlo");
+      }
+      if (salida == true) break;
     }
   }
 
@@ -39,9 +50,9 @@ abstract class Menu {
   //TO DO: Terminar menu:
   //1. Buscar criaturas con la api,2.Mostrar personajes(e imprimir),3.Creacion de personajes,4.Ver opciones de usuario,5.Salir
 
-  static void menuUsuario(Map<String, String> datos) {
+  void menuUsuario() {
     stdout.writeln('''
-    Bienvenido ${datos['usuario']},elige una opcion:
+    Bienvenido ${Sesion.usuario!.nombreReal},elige una opcion:
     1.Buscar criaturas
     2.Mostrar personajes
     3.Creacion de personajes
@@ -49,24 +60,20 @@ abstract class Menu {
     5.Salir
 
 ''');
-    exit(0);
+
   }
 
   //metodo para iniciar sesion en la aplicacion con un usuario y contraseña determionados
-  static void iniciarSesionMenu() async {
+  static Future<bool> iniciarSesionMenu() async {
     stdout.writeln('Introduce un nombre de usuario');
     String usuario = stdin.readLineSync() ?? "";
     stdout.writeln('Introduce una contraseña');
     String contra = stdin.readLineSync() ?? "";
     Map<String, String> datos = {'usuario': usuario, 'contra': contra};
-    bool inicio = await Usuario.iniciarSesion(datos);
+    bool inicio = await Sesion.iniciarSesion(datos);
     if (inicio) {
-      print('Inicio de sesion correcto');
-      Menu.menuUsuario(datos);
+      return true;
     }
-    print(
-      'EL nombre de usuario introducido es $usuario y la contraseña es $contra',
-    );
-    exit(0); //TO DO:Quitar este exit
+    return false;
   }
 }

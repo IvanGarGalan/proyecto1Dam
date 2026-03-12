@@ -44,7 +44,7 @@ abstract class Database {
       host: _host,
       port: _port,
       user: _user,
-      db: 'proyectoDB',
+      db: 'proyectodb',
     );
     return await MySqlConnection.connect(settings);
   }
