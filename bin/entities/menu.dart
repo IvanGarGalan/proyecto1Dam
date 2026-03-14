@@ -4,7 +4,7 @@ import '../utils/utils.dart';
 
 abstract class Menu {
   static Future<void> menuOpciones() async {
-    bool salida = false;
+    bool salida = false; //para poder salir del bucle correctamente
     while (true) {
       menuInicio();
       String opcion = stdin.readLineSync() ?? "0";
@@ -49,18 +49,48 @@ abstract class Menu {
   }
 
   //menu que muestra las opciones despues de iniciar sesion.
-  //TO DO: Terminar menu:
-  //1. Buscar criaturas con la api,2.Mostrar personajes(e imprimir),3.Creacion de personajes,4.Ver opciones de usuario,5.Salir
+  //TO DO:1. Buscar criaturas con la api,2.Mostrar personajes(e imprimir),3.Creacion de personajes,4.Ver opciones de usuario,5.Salir
 
   static void menuUsuario() {
+    stdout.writeln('Bienvenido ${Sesion.usuario!.nombreReal}');
+    bool salida = false;
+    while (true) {
+      menuUsuarioInicio();
+      String opcion = stdin.readLineSync() ?? '0';
+      switch (opcion) {
+        case '1':
+          print('WIP');
+          break;
+        case '2':
+          print('WIP');
+          break;
+        case '3':
+          print('WIP');
+          break;
+        case '4':
+          print('WIP');
+          break;
+        case '5':
+          stdout.writeln(
+            'Has salido de la aplicacion,hasta luego ${Sesion.usuario!.nombreReal}',
+          );
+          salida = true;
+          break;
+        default:
+          stdout.writeln("Opcion no reconocida,vuelve a intentarlo");
+      }
+      if (salida == true) break;
+    }
+  }
+
+  static void menuUsuarioInicio() {
     stdout.writeln('''
-    Bienvenido ${Sesion.usuario!.nombreReal},elige una opcion:
+    Elige una opcion:
     1.Buscar criaturas
     2.Mostrar personajes
     3.Creacion de personajes
     4.Ver opciones de usuario 
     5.Salir
-
 ''');
   }
 

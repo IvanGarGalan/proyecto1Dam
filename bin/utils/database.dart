@@ -23,7 +23,7 @@ abstract class Database {
 
   //metodo que crea la base de datos
   static _crearDB(conn) async {
-    await conn.query('CREATE DATABASE IF NOT EXISTS proyectoDB');
+    await conn.query('CREATE DATABASE IF NOT EXISTS $_dbName');
     await conn.query('USE proyectoDB');
     //print('Base de datos creada');
   }
