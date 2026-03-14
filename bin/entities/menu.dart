@@ -10,7 +10,7 @@ abstract class Menu {
       String opcion = stdin.readLineSync() ?? "0";
       switch (opcion) {
         case "1":
-          stdout.writeln("Opcion 1 seleccionada");
+          stdout.writeln("Iniciar Sesión");
           bool inicio = await Menu.iniciarSesionMenu();
           if (inicio) {
             print('Inicio de sesion correcto');
@@ -25,7 +25,6 @@ abstract class Menu {
 
         case "2":
           stdout.writeln("Opcion 2 seleccionada");
-          salida = true;
           break;
         case "3":
           stdout.writeln("Has salido de la aplicacion");
@@ -43,8 +42,8 @@ abstract class Menu {
     stdout.writeln('''
     Elige una opción:
     1.Iniciar sesión
-    2.Salir de la aplicación
-
+    2.Registrarse
+    3.Salir de la aplicación
 ''');
   }
 
