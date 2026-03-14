@@ -4,6 +4,7 @@ abstract class Database {
   static final String _host = "localhost";
   static final int _port = 3306;
   static final String _user = "root";
+  static final String _dbName = "proyectoDB";
 
   //creacion de la base de datos cuando la aplicacion se inicia por primera vez
   static instalacionDB() async {
@@ -44,7 +45,7 @@ abstract class Database {
       host: _host,
       port: _port,
       user: _user,
-      db: 'proyectodb',
+      db: _dbName,
     );
     return await MySqlConnection.connect(settings);
   }

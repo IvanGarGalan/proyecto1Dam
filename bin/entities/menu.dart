@@ -15,6 +15,7 @@ abstract class Menu {
           if (inicio) {
             print('Inicio de sesion correcto');
             Menu.menuUsuario();
+            salida = true;
           } else {
             stdout.writeln(
               'No se ha reconocido el inicio de sesion,vuelve a intentarlo',
@@ -24,6 +25,7 @@ abstract class Menu {
 
         case "2":
           stdout.writeln("Opcion 2 seleccionada");
+          salida = true;
           break;
         case "3":
           stdout.writeln("Has salido de la aplicacion");
@@ -50,7 +52,7 @@ abstract class Menu {
   //TO DO: Terminar menu:
   //1. Buscar criaturas con la api,2.Mostrar personajes(e imprimir),3.Creacion de personajes,4.Ver opciones de usuario,5.Salir
 
-  void menuUsuario() {
+  static void menuUsuario() {
     stdout.writeln('''
     Bienvenido ${Sesion.usuario!.nombreReal},elige una opcion:
     1.Buscar criaturas
@@ -60,7 +62,6 @@ abstract class Menu {
     5.Salir
 
 ''');
-
   }
 
   //metodo para iniciar sesion en la aplicacion con un usuario y contraseña determionados

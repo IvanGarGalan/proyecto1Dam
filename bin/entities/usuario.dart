@@ -1,16 +1,16 @@
 import '../utils/utils.dart';
+import 'package:mysql1/mysql1.dart';
 
 class Usuario {
-  int? _idUsuario;
-  String? _nombreReal;
-  String? _nombreUsuario;
-  String? _contrasenna;
+  int? idUsuario;
+  String? nombreReal;
+  String? nombreUsuario;
+  String? contrasenna;
 
   Usuario(
-    this._idUsuario,
-    this._nombreReal,
-    this._nombreUsuario,
-    this._contrasenna,
+    this.idUsuario,
+    this.nombreReal,
+    this.nombreUsuario,
+    this.contrasenna,
   );
-
 }
