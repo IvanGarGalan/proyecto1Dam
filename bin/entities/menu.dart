@@ -3,6 +3,8 @@ import 'entities.dart';
 import '../utils/utils.dart';
 
 abstract class Menu {
+  //metodo que muestra las opciones de inicio de la app
+  //TO DO:HAcer el registro de usuario
   static Future<void> menuOpciones() async {
     bool salida = false; //para poder salir del bucle correctamente
     while (true) {
@@ -37,7 +39,7 @@ abstract class Menu {
     }
   }
 
-  //metodo que muestra el primer menu de la aplicación,inicio de sesión o salir
+  //metodo que muestra el primer menu de la aplicación,inicio de sesión ,registro o salir
   static void menuInicio() {
     stdout.writeln('''
     Elige una opción:
@@ -47,9 +49,8 @@ abstract class Menu {
 ''');
   }
 
-  //menu que muestra las opciones despues de iniciar sesion.
-  //TO DO:1. Buscar criaturas con la api,2.Mostrar personajes(e imprimir),3.Creacion de personajes,4.Ver opciones de usuario,5.Salir
-
+  //metodo menu que muestra las opciones despues de iniciar sesion.
+  //TO DO:1. Buscar criaturas con la api,2.Mostrar personajes(e imprimir),3.Creacion de personajes,4.Ver opciones de usuario,
   static void menuUsuario() {
     stdout.writeln('Bienvenido ${Sesion.usuario!.nombreReal}');
     bool salida = false;
@@ -82,6 +83,7 @@ abstract class Menu {
     }
   }
 
+  //metodo que muestra las opciones al usuario
   static void menuUsuarioInicio() {
     stdout.writeln('''
     Elige una opcion:
