@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import '../utils/api.dart';
 
 class Monster {
   String? nombre;
@@ -109,7 +110,7 @@ class Monster {
 
     //Metodo que trae datos de la api y crea el objeto Monstruo
   static Future<Monster?> obtenerMonstruo(String nombre) async {
-    Uri url = Uri.parse('https://www.dnd5eapi.co/api/2014/monsters/$nombre');
+    Uri url = Uri.parse('${Api.claveApi}monsters/$nombre');//para no repetir la clave de la api todo el tiempo
     var respuesta = await http.get(url);
     try {
       if (respuesta.statusCode == 200) {

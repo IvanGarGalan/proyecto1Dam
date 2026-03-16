@@ -74,7 +74,7 @@ abstract class Menu {
               stdout.writeln('No se han imprimido los datos');
             }
           } else {
-            print('No se pudo obtener el monstruo.');
+            print('No se pudo obtener el monstruo.Vuelve a intentarlo mas tarde');
           }
           break;
         case '2':
