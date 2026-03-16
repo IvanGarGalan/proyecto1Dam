@@ -15,7 +15,7 @@ abstract class Menu {
           stdout.writeln("Iniciar Sesión");
           bool inicio = await Menu.iniciarSesionMenu();
           if (inicio) {
-            print('Inicio de sesion correcto');
+            stdout.writeln('Inicio de sesion correcto');
             Menu.menuUsuario();
             salida = true;
           } else {
