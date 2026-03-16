@@ -62,7 +62,9 @@ abstract class Menu {
           stdout.writeln('Introduce el nombre que quieras buscar');
           String nombre = stdin.readLineSync() ?? '';
           print(nombre);
-          Monster? monstruo = await Monster.obtenerMonstruo(nombre.toLowerCase().replaceAll(" ", "-"));//prepara el string a minusculas y cambia los espacios por guion -
+          Monster? monstruo = await Monster.obtenerMonstruo(
+            nombre.toLowerCase().replaceAll(" ", "-"),
+          ); //prepara el string a minusculas y cambia los espacios por guion -
           if (monstruo != null) {
             monstruo.imprimirInfo();
             stdout.writeln('¿Quieres imprimir la información en un archivo?');
@@ -75,16 +77,21 @@ abstract class Menu {
               stdout.writeln('No se han imprimido los datos');
             }
           } else {
-            print('No se pudo obtener el monstruo.Vuelve a intentarlo mas tarde');
+            print(
+              'No se pudo obtener el monstruo.Vuelve a intentarlo mas tarde',
+            );
           }
           break;
         case '2':
+          stdout.writeln("Creación de personajes");
           print('WIP');
           break;
         case '3':
+          stdout.writeln("Mostrar tus personajes");
           print('WIP');
           break;
         case '4':
+          stdout.writeln("Tus opciones de usuario");
           print('WIP');
           break;
         case '5':
