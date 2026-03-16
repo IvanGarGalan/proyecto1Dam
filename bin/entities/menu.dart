@@ -60,8 +60,9 @@ abstract class Menu {
       switch (opcion) {
         case '1':
           stdout.writeln('Introduce el nombre que quieras buscar');
-          String nombre = stdin.readLineSync() ?? ''.toLowerCase();
-          Monster? monstruo = await Monster.obtenerMonstruo(nombre);
+          String nombre = stdin.readLineSync() ?? '';
+          print(nombre);
+          Monster? monstruo = await Monster.obtenerMonstruo(nombre.toLowerCase().replaceAll(" ", "-"));//prepara el string a minusculas y cambia los espacios por guion -
           if (monstruo != null) {
             monstruo.imprimirInfo();
             stdout.writeln('¿Quieres imprimir la información en un archivo?');
