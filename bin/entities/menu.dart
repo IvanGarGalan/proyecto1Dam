@@ -35,7 +35,7 @@ abstract class Menu {
         default:
           stdout.writeln("Opcion no reconocida,vuelve a intentarlo");
       }
-      if (salida == true) break;
+      if (salida) break;
     }
   }
 
@@ -79,7 +79,7 @@ abstract class Menu {
         default:
           stdout.writeln("Opcion no reconocida,vuelve a intentarlo");
       }
-      if (salida == true) break;
+      if (salida) break;
     }
   }
 
