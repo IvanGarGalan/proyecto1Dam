@@ -51,7 +51,7 @@ abstract class Menu {
 
   //metodo menu que muestra las opciones despues de iniciar sesion.
   //TO DO:1. Buscar criaturas con la api,2.Mostrar personajes(e imprimir),3.Creacion de personajes,4.Ver opciones de usuario,
-  static void menuUsuario() {
+  static Future<void> menuUsuario() async {
     stdout.writeln('Bienvenido ${Sesion.usuario!.nombreReal}');
     bool salida = false;
     while (true) {
@@ -60,6 +60,24 @@ abstract class Menu {
       switch (opcion) {
         case '1':
           print('WIP');
+          stdout.writeln('Introduce el nombre que quieras buscar');
+          String nombre = stdin.readLineSync() ?? ''.toLowerCase();
+          Monster? monstruo = await Monster.obtenerMonstruo(nombre);
+          if (monstruo != null) {
+            monstruo.imprimirInfo();
+            stdout.writeln('¿Quieres imprimir la información en un archivo?');
+            stdout.writeln('1.Si 2.No');
+            String opcionTexto = stdin.readLineSync() ?? '';
+            //String opcionTexto = '1';
+            if (opcionTexto == '1') {
+              monstruo.imprimirDatosTexto(monstruo);
+              stdout.writeln('Información imprimida');
+            } else {
+              stdout.writeln('Se ha salido de la aplicación');
+            }
+          } else {
+            print('No se pudo obtener el monstruo.');
+          }
           break;
         case '2':
           print('WIP');

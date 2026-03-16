@@ -1,0 +1,31 @@
+    ============Nombre Owlbear==================
+      Tamaño: Large
+      Tipo: monstrosity
+      Alineamiento: unaligned
+      Puntos de golpe: 59
+      Dados de golpe: 7d10
+      Tirada de daño: 7d10+21
+      Clase de armadura: [{type: natural, value: 13}]
+      Velocidad: {walk: 40 ft.}
+      
+    ===Estadisticas:============================
+        -Fuerza: 20
+        -Destreza: 12
+        -Constitución: 17
+        -Inteligencia: 3
+        -Sabiduria: 12
+        -Carisma: 7
+      Experiencia: 700 puntos
+      Proficencias: [{value: 3, proficiency: {index: skill-perception, name: Skill: Perception, url: /api/2014/proficiencies/skill-perception}}]
+    ============================================  
+      Vulnerabilidades: []
+      Resistencias de daño: []
+      Inmunidades de daño: []
+      Inmunidaes de condición: []
+      Idioma: 
+      Nivel de desafio: 3
+      Bonus de competencia: 2
+      Formas: []
+      Acciones legendarias: []
+      Reacciones: []  
+      
