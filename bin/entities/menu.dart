@@ -50,7 +50,7 @@ abstract class Menu {
   }
 
   //metodo menu que muestra las opciones despues de iniciar sesion.
-  //TO DO:1. Buscar criaturas con la api,2.Mostrar personajes(e imprimir),3.Creacion de personajes,4.Ver opciones de usuario,
+  //TO DO:2.Mostrar personajes(e imprimir),3.Creacion de personajes,4.Ver opciones de usuario,
   static Future<void> menuUsuario() async {
     stdout.writeln('Bienvenido ${Sesion.usuario!.nombreReal}');
     bool salida = false;
@@ -59,7 +59,6 @@ abstract class Menu {
       String opcion = stdin.readLineSync() ?? '0';
       switch (opcion) {
         case '1':
-          print('WIP');
           stdout.writeln('Introduce el nombre que quieras buscar');
           String nombre = stdin.readLineSync() ?? ''.toLowerCase();
           Monster? monstruo = await Monster.obtenerMonstruo(nombre);
