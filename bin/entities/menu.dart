@@ -67,12 +67,11 @@ abstract class Menu {
             stdout.writeln('¿Quieres imprimir la información en un archivo?');
             stdout.writeln('1.Si 2.No');
             String opcionTexto = stdin.readLineSync() ?? '';
-            //String opcionTexto = '1';
             if (opcionTexto == '1') {
               monstruo.imprimirDatosTexto(monstruo);
               stdout.writeln('Información imprimida');
             } else {
-              stdout.writeln('Se ha salido de la aplicación');
+              stdout.writeln('No se han imprimido los datos');
             }
           } else {
             print('No se pudo obtener el monstruo.');
@@ -105,8 +104,8 @@ abstract class Menu {
     stdout.writeln('''
     Elige una opcion:
     1.Buscar criaturas
-    2.Mostrar personajes
-    3.Creacion de personajes
+    2.Creacion de personajes
+    3.Mostrar personajes
     4.Ver opciones de usuario 
     5.Salir
 ''');
