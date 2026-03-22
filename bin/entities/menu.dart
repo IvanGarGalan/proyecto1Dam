@@ -4,7 +4,6 @@ import '../utils/utils.dart';
 
 abstract class Menu {
   //metodo que muestra las opciones de inicio de la app
-  //TO DO:HAcer el registro de usuario
   static Future<void> menuOpciones() async {
     bool salida = false; //para poder salir del bucle correctamente
     while (true) {
@@ -29,7 +28,7 @@ abstract class Menu {
           stdout.writeln("Registrarse");
           Map<String, String> datosRegistro =
               registroUsuario(); //mapa al que se le asigna los datos devueltos del registro
-          bool registrado = await Usuario.registroUsuario(datosRegistro);
+          bool registrado = await Usuario.registro(datosRegistro);
           if (registrado) {
             stdout.writeln("El usuario se ha registrado correctamente");
           } else {
@@ -57,7 +56,6 @@ abstract class Menu {
     //mapa para que devuelva datos y se puedan comparar con la base de datos
     Map<String, String> datos = {};
     do {
-      stdout.writeln("Registrarse");
       stdout.writeln("Introduce tu nombre real");
       nombrePersona = stdin.readLineSync() ?? "";
       stdout.writeln("Introduce un nombre de usuario");

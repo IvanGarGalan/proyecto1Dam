@@ -15,7 +15,7 @@ class Usuario {
   );
 
   //metodo que sirve para registrar un usuario en la base de datos,si no esta.lo registra correctamente
-  static Future<bool> registroUsuario(Map<String, String> datos) async {
+  static Future<bool> registro(Map<String, String> datos) async {
     MySqlConnection conn = await Database.conexionDB();
     var respuesta = await conn.query(
       "SELECT * FROM usuarios WHERE nombreUsuario = ?",
