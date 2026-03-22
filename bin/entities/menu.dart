@@ -26,7 +26,17 @@ abstract class Menu {
           break;
 
         case "2":
-          stdout.writeln("Opcion 2 seleccionada");
+          stdout.writeln("Registrarse");
+          Map<String, String> datosRegistro =
+              registroUsuario(); //mapa al que se le asigna los datos devueltos del registro
+          bool registrado = await Usuario.registroUsuario(datosRegistro);
+          if (registrado) {
+            stdout.writeln("El usuario se ha registrado correctamente");
+          } else {
+            stdout.writeln(
+              "No se han podido reconocer los datos,vuelve a intentarlo",
+            );
+          }
           break;
         case "3":
           stdout.writeln("Has salido de la aplicacion");
@@ -37,6 +47,49 @@ abstract class Menu {
       }
       if (salida) break;
     }
+  }
+
+  //metodo que sirve para crear un mapa con los datos de registro
+  static Map<String, String> registroUsuario() {
+    String nombrePersona;
+    String nombreRegistroUsuario;
+    String contrasenna;
+    //mapa para que devuelva datos y se puedan comparar con la base de datos
+    Map<String, String> datos = {};
+    do {
+      stdout.writeln("Registrarse");
+      stdout.writeln("Introduce tu nombre real");
+      nombrePersona = stdin.readLineSync() ?? "";
+      stdout.writeln("Introduce un nombre de usuario");
+      nombreRegistroUsuario = stdin.readLineSync() ?? "ERROR";
+      stdout.writeln("Introduce una contraseña");
+      contrasenna = stdin.readLineSync() ?? "";
+      //print(
+      //  "El nombre es $nombrePersona ,el usuario es $nombreRegistroUsuario y la contraseña es $contrasenna",
+      //);
+
+      //comprobar que la contraseña tenga seis carqacteres
+      if (contrasenna.length < 6) {
+        stdout.writeln(
+          "La contraseña no tiene mas de seis caracteres,debes introducir mas de seis caracteres",
+        );
+      }
+      if (nombrePersona.isEmpty ||
+          nombreRegistroUsuario.isEmpty ||
+          contrasenna.isEmpty) {
+        stdout.writeln("Ningun campo puede estar vacio");
+      }
+    } while (nombrePersona.isEmpty || //repite si se cumplen estas condiciones
+        nombreRegistroUsuario.isEmpty ||
+        contrasenna.isEmpty ||
+        contrasenna.length < 6);
+
+    datos = {
+      "nombre": nombrePersona,
+      "registro": nombreRegistroUsuario,
+      "contra": contrasenna,
+    };
+    return datos;
   }
 
   //metodo que muestra el primer menu de la aplicación,inicio de sesión ,registro o salir

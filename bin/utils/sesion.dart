@@ -14,9 +14,8 @@ abstract class Sesion {
       [datos["usuario"]],
     );
     if (inicio.isEmpty || inicio.first[3] != datos['contra']) {
-      await conn
-          .close(); //si se encuentra un resultado,es incorrecto y devuelve falso
-      return false;
+      await conn.close();
+      return false; //si se encuentra un resultado,es incorrecto y devuelve falso
     }
     await conn.close();
     //si es true, se crea la sesion con los datos de la sesion
