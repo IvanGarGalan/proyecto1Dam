@@ -62,9 +62,6 @@ abstract class Menu {
       nombreRegistroUsuario = stdin.readLineSync() ?? "ERROR";
       stdout.writeln("Introduce una contraseña");
       contrasenna = stdin.readLineSync() ?? "";
-      //print(
-      //  "El nombre es $nombrePersona ,el usuario es $nombreRegistroUsuario y la contraseña es $contrasenna",
-      //);
 
       //comprobar que la contraseña tenga seis carqacteres
       if (contrasenna.length < 6) {
