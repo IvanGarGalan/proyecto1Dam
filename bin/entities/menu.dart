@@ -138,7 +138,7 @@ abstract class Menu {
           );
           String nombrePersonaje = stdin.readLineSync() ?? 'Drizt';
           stdout.writeln(
-            "Ahora vamos con las estadisticas,puedes elegir si todas serán aleatorias o usar la numeración estandar(15,12,14,10,13,8)",
+            "Ahora vamos con las estadisticas,puedes elegir si todas serán aleatorias(tiradas d20) o usar la numeración estandar en este orden(15,12,14,10,13,8)",
           );
           stdout.writeln("1.Aleatorio 2.Estandar");
           String numerosElegir = stdin.readLineSync() ?? '1';
