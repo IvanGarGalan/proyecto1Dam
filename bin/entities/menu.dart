@@ -159,7 +159,7 @@ abstract class Menu {
             "Elige un transfondo:1.Soldado,2.Explorador,3.Mercenario",
           );
           //TO DO: Recoger transfondo en switch
-          stdout.writeln("Elige un alinemaiento:1.Bueno,2.Neutral,3.Maligno");
+          stdout.writeln("Elige un alineamiento:1.Bueno,2.Neutral,3.Maligno");
           //to do: recoger el alineamiento en switch
           print('WIP');
           break;
