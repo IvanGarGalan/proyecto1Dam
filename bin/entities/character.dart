@@ -61,6 +61,7 @@ class PlayableCharacter {
       if (respuesta.statusCode == 200) {
         var body = json.decode(respuesta.body);
         PlayableCharacter personaje = PlayableCharacter.datosAPI(body);
+        return personaje;
       } else if (respuesta.statusCode == 404) {
         throw ('No se ha podido hacer el personaje,vuelve a intentarlo mas tarde');
       }

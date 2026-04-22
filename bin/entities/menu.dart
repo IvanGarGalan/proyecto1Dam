@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'entities.dart';
 import '../utils/utils.dart';
+import 'dart:math';
 
 abstract class Menu {
   //metodo que muestra las opciones de inicio de la app
@@ -132,6 +133,34 @@ abstract class Menu {
           break;
         case '2':
           stdout.writeln("Creación de personajes");
+          stdout.writeln(
+            "Vamos a crear un personaje,empecemos por el nombre¿Cual será?",
+          );
+          String nombrePersonaje = stdin.readLineSync() ?? 'Drizt';
+          stdout.writeln(
+            "Ahora vamos con las estadisticas,puedes elegir si todas serán aleatorias o usar la numeración estandar(15,12,14,10,13,8)",
+          );
+          stdout.writeln("1.Aleatorio 2.Estandar");
+          String numerosElegir = stdin.readLineSync() ?? '1';
+          int numero = int.tryParse(numerosElegir) ?? 0;
+          //lista para las estadisticas, si se eligen aleatorios,se borran y se añaden
+          List<int> stats = [15, 12, 14, 10, 13, 8];
+          if (numero == 1) {
+            stats.clear(); //la lista se limpia
+            for (var i = 0; i < 5; i++) {
+              stats.add(Random().nextInt(20) + 1);
+            }
+          }
+          stdout.writeln(
+            "Elige una raza:1.Humano,2.Elfo,3.Orco,4.Enano,5.Gnomo,6.Semielfo",
+          );
+          //TO DO: recoger las razas en switch
+          stdout.writeln(
+            "Elige un transfondo:1.Soldado,2.Explorador,3.Mercenario",
+          );
+          //TO DO: Recoger transfondo en switch
+          stdout.writeln("Elige un alinemaiento:1.Bueno,2.Neutral,3.Maligno");
+          //to do: recoger el alineamiento en switch
           print('WIP');
           break;
         case '3':
