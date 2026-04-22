@@ -98,7 +98,7 @@ abstract class Menu {
   }
 
   //metodo menu que muestra las opciones despues de iniciar sesion.
-  //TO DO:2.3.Creacion de personajes,3.Mostrar personajes(e imprimir),4.Ver opciones de usuario,
+  //TO DO:2.Creacion de personajes,3.Mostrar personajes(e imprimir),4.Ver opciones de usuario,
   static Future<void> menuUsuario() async {
     stdout.writeln('Bienvenido ${Sesion.usuario!.nombreReal}');
     bool salida = false;
