@@ -154,7 +154,6 @@ abstract class Menu {
           stdout.writeln(
             "Elige una raza:1.Humano,2.Elfo,3.Orco,4.Enano,5.Gnomo,6.Semielfo",
           );
-          //TO DO: recoger las razas en switch
           numerosElegir = stdin.readLineSync() ?? '1';
           int numeroRaza = int.tryParse(numerosElegir) ?? 1;
           String raza = recogerRaza(numeroRaza);
@@ -162,9 +161,13 @@ abstract class Menu {
             "Elige un transfondo:1.Soldado,2.Explorador,3.Mercenario",
           );
           //TO DO: Recoger transfondo en switch
+          numerosElegir = stdin.readLineSync() ?? '1';
+          int numeroTrasfondo = int.tryParse(numerosElegir) ?? 1;
+          String trasfondo = recogerTrasfondo(numeroTrasfondo);
           stdout.writeln("Elige un alineamiento:1.Bueno,2.Neutral,3.Maligno");
           //to do: recoger el alineamiento en switch
-          print('WIP');
+
+          //print('WIP');
           break;
         case '3':
           stdout.writeln("Mostrar tus personajes");
@@ -231,6 +234,21 @@ abstract class Menu {
       //por defecto,devuelve humano
       default:
         return 'Humano';
+    }
+  }
+
+  //metodo que recoge el numeroTrasfondo y devuelve ese trasfondo en switch
+  static String recogerTrasfondo(int numeroTrasfondo) {
+    switch (numeroTrasfondo) {
+      case 1:
+        return 'Soldado';
+      case 2:
+        return 'Explorador';
+      case 3:
+        return 'Mercenario';
+      //por defecto,devuelve soldado 1.Soldado,2.Explorador,3.Mercenario",
+      default:
+        return 'Soldado';
     }
   }
 }
