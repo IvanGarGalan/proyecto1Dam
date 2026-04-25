@@ -86,7 +86,7 @@ abstract class Database {
     await conn.query("""CREATE TABLE IF NOT EXISTS usuariospersonajes (
     iduserpersonaje INT PRIMARY KEY AUTO_INCREMENT,
     iduser INT NOT NULL,
-    idpersonaje INT NOT NULL,
+    idpersonaje INT NOT NULL
     )""");
   }
 
