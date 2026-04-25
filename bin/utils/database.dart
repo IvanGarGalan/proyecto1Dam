@@ -14,6 +14,7 @@ abstract class Database {
       await _crearDB(conn);
       await _crearTablaUsuarios(conn);
       await _crearTablaPersonajes(conn);
+      await _crearTablaUsuariosPersonajes(conn);
       //await _crearUsuario(conn);
     } catch (e) {
       print(e);
@@ -40,6 +41,7 @@ abstract class Database {
     //print("Tabla de usuarios creada");
   }
 
+  //metodo que permite crear la tabla de Personajes
   static _crearTablaPersonajes(conn) async {
     await conn.query('''CREATE TABLE IF NOT EXISTS personajes(
     idPersonaje INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -65,7 +67,7 @@ abstract class Database {
     idioma VARCHAR(50) NOT NULL,
     nivel INT NOT NULL
 )''');
-    print('Tabla de personajes creada');
+    //print('Tabla de personajes creada');
   }
 
   //metodo que permite la conexion a la base de datos fuera de la clase.
@@ -77,6 +79,15 @@ abstract class Database {
       db: _dbName,
     );
     return await MySqlConnection.connect(settings);
+  }
+
+  //metodo que permite crear la tabla usuariospersonajes
+  static _crearTablaUsuariosPersonajes(conn) async {
+    await conn.query("""CREATE TABLE IF NOT EXISTS usuariospersonajes (
+    iduserpersonaje INT PRIMARY KEY AUTO_INCREMENT,
+    iduser INT NOT NULL,
+    idpersonaje INT NOT NULL,
+    )""");
   }
 
   //metodo que inserta un usuario en la base de datos(PRUEBA)

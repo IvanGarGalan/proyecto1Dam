@@ -49,7 +49,7 @@ class PlayableCharacter {
     experiencia = 0;
     this.raza = raza;
     puntosVida = 2 + stats[2]; //puntos de vida con constitucion
-    equipoInicial = [];
+    equipoInicial = datos['starting_equipment'][0]['equipment']['name'];
     this.trasfondo = trasfondo;
     hechizos = [];
     this.alineamiento = alineamiento;
