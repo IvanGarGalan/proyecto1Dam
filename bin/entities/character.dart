@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:convert';
+import 'dart:math';
 import 'package:http/http.dart' as http;
 import '../utils/api.dart';
 
@@ -29,26 +30,36 @@ class PlayableCharacter {
   PlayableCharacter();
 
   //constructor que prepara los datos de la API al objeto personaje
-  PlayableCharacter.datosAPI(datos) {
-    nombrePersonaje = 'abcd'; // to do: poner variable con nombre
+  PlayableCharacter.datosAPI(
+    datos,
+    String nombre,
+    List<int> stats,
+    String raza,
+    String trasfondo,
+    String alineamiento,
+  ) {
+    nombrePersonaje = nombre;
     clase = datos['name'];
-    fuerza = 10; //poner estadisticas de list
-    destreza = 10;
-    constitucion = 10;
-    inteligencia = 10;
-    sabiduria = 10;
-    carisma = 10;
+    fuerza = stats[0];
+    destreza = stats[1];
+    constitucion = stats[2];
+    inteligencia = stats[3];
+    sabiduria = stats[4];
+    carisma = stats[5];
     experiencia = 0;
-    raza = 'Humano'; //to do: poner raza
-    puntosVida = 8; //to do: poner puntos de vida con constitucion
+    this.raza = raza;
+    puntosVida = 2 + stats[2]; //puntos de vida con constitucion
     equipoInicial = [];
-    trasfondo = ''; // to do: poner transfondo
+    this.trasfondo = trasfondo;
     hechizos = [];
-    alineamiento = ''; // to do: poner alineamiento
+    this.alineamiento = alineamiento;
     puntosGolpe = datos['hit_die'];
-    iniciativa = 0; // to do: poner iniciativa(destreza + d20)
-    armadura = 0; // to do: poner armadura (10 + destreza)
-    velocidad = {30, 'ft'} as Map<dynamic, dynamic>;
+    iniciativa =
+        stats[1] +
+        Random().nextInt(20) +
+        1; // to do: poner iniciativa(destreza + d20)
+    armadura = 10 + stats[1]; //armadura (10 + destreza)
+    velocidad = {'walk': '10ft'}; //caminar estandar de un personaje jugable
     idioma = 'Común';
     nivel = 1;
   }
@@ -67,7 +78,14 @@ class PlayableCharacter {
     try {
       if (respuesta.statusCode == 200) {
         var body = json.decode(respuesta.body);
-        PlayableCharacter personaje = PlayableCharacter.datosAPI(body);
+        PlayableCharacter personaje = PlayableCharacter.datosAPI(
+          body,
+          nombrePersonaje,
+          stats,
+          raza,
+          trasfondo,
+          alineamiento,
+        );
         return personaje;
       } else if (respuesta.statusCode == 404) {
         throw ('No se ha podido hacer el personaje,vuelve a intentarlo mas tarde');

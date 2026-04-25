@@ -13,6 +13,7 @@ abstract class Database {
     try {
       await _crearDB(conn);
       await _crearTablaUsuarios(conn);
+      await _crearTablaPersonajes(conn);
       //await _crearUsuario(conn);
     } catch (e) {
       print(e);
@@ -37,6 +38,34 @@ abstract class Database {
     contrasenna VARCHAR(50) NOT NULL
     )''');
     //print("Tabla de usuarios creada");
+  }
+
+  static _crearTablaPersonajes(conn) async {
+    await conn.query('''CREATE TABLE IF NOT EXISTS personajes(
+    idPersonaje INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nombrePersonaje VARCHAR(50) NOT NULL,
+    fuerza INT NOT NULL,
+    destreza INT NOT NULL,
+    constitucion INT NOT NULL,
+    inteligencia INT NOT NULL,
+    sabiduria INT NOT NULL,
+    carisma INT NOT NULL,
+    clase VARCHAR(50) NOT NULL,
+    experiencia INT NOT NULL,
+    raza VARCHAR(50) NOT NULL,
+    puntosVida INT NOT NULL,
+    equipoInicial TEXT NOT NULL,
+    trasfondo VARCHAR(50) NOT NULL,
+    hechizos TEXT NOT NULL,
+    alineamiento VARCHAR(50) NOT NULL,
+    puntosGolpe INT NOT NULL,
+    iniciativa INT NOT NULL,
+    armadura INT NOT NULL,
+    velocidad TEXT NOT NULL,
+    idioma VARCHAR(50) NOT NULL,
+    nivel INT NOT NULL
+)''');
+    print('Tabla de personajes creada');
   }
 
   //metodo que permite la conexion a la base de datos fuera de la clase.

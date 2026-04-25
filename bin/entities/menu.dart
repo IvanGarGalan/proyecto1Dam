@@ -149,7 +149,7 @@ abstract class Menu {
           List<int> stats = [15, 12, 14, 10, 13, 8];
           if (numeroStats == 1) {
             stats.clear(); //la lista se limpia
-            for (var i = 0; i < 5; i++) {
+            for (var i = 0; i <= 5; i++) {
               stats.add(Random().nextInt(20) + 1);
             }
           }
@@ -189,6 +189,10 @@ abstract class Menu {
             alineamiento,
             clase,
           );
+          /*
+          print(pj?.nombrePersonaje);
+          print(pj?.clase);
+          */
           if (pj != null) {
             stdout.writeln(
               'Se ha creado el personaje $nombrePersonaje de forma correcta.',
