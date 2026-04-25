@@ -160,14 +160,18 @@ abstract class Menu {
           stdout.writeln(
             "Elige un transfondo:1.Soldado,2.Explorador,3.Mercenario",
           );
-          //TO DO: Recoger transfondo en switch
           numerosElegir = stdin.readLineSync() ?? '1';
           int numeroTrasfondo = int.tryParse(numerosElegir) ?? 1;
           String trasfondo = recogerTrasfondo(numeroTrasfondo);
           stdout.writeln("Elige un alineamiento:1.Bueno,2.Neutral,3.Maligno");
-          //to do: recoger el alineamiento en switch
+          numerosElegir = stdin.readLineSync() ?? '1';
+          int numeroAlineamiento = int.tryParse(numerosElegir) ?? 1;
+          String alineamiento = recogerAlineamiento(numeroAlineamiento);
+          //TO DO: Elegir clase;
+          stdout.writeln(
+            'Elige una clase:1.Barbaro,2.Bardo,3.Clerigo,4.Mago,5.Paladín,6.Pícaro',
+          );
 
-          //print('WIP');
           break;
         case '3':
           stdout.writeln("Mostrar tus personajes");
@@ -246,9 +250,23 @@ abstract class Menu {
         return 'Explorador';
       case 3:
         return 'Mercenario';
-      //por defecto,devuelve soldado 1.Soldado,2.Explorador,3.Mercenario",
+      //por defecto,devuelve soldado
       default:
         return 'Soldado';
+    }
+  }
+
+  static String recogerAlineamiento(int numeroAlineamiento) {
+    switch (numeroAlineamiento) {
+      case 1:
+        return 'Bueno';
+      case 2:
+        return 'Neutral';
+      case 3:
+        return 'Maligno';
+      default:
+        //por defecto,devuelve Bueno
+        return 'Bueno';
     }
   }
 }

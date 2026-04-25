@@ -32,7 +32,7 @@ class PlayableCharacter {
   PlayableCharacter.datosAPI(datos) {
     nombrePersonaje = 'abcd'; // to do: poner variable con nombre
     clase = datos['name'];
-    fuerza = 10;
+    fuerza = 10; //poner estadisticas de list
     destreza = 10;
     constitucion = 10;
     inteligencia = 10;
