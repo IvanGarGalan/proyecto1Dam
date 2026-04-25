@@ -179,6 +179,17 @@ abstract class Menu {
           numerosElegir = stdin.readLineSync() ?? '1';
           int numeroClase = int.tryParse(numerosElegir) ?? 1;
           String clase = recogerClase(numeroClase);
+          //print('''$nombrePersonaje,$clase,$raza,$alineamiento,$trasfondo,$stats''');
+          //creacion del persoanje y añadirlo a la base de datos
+          PlayableCharacter? pj = await PlayableCharacter.obtenerPersonaje(
+            nombrePersonaje,
+            stats,
+            raza,
+            trasfondo,
+            alineamiento,
+            clase,
+          );
+
           break;
         case '3':
           stdout.writeln("Mostrar tus personajes");
