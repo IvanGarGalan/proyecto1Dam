@@ -189,7 +189,15 @@ abstract class Menu {
             alineamiento,
             clase,
           );
-
+          if (pj != null) {
+            stdout.writeln(
+              'Se ha creado el personaje $nombrePersonaje de forma correcta.',
+            );
+          } else {
+            stdout.writeln(
+              'No se ha podido crear el personaje $nombrePersonaje,vuelve a intentarlo de nuevo',
+            );
+          }
           break;
         case '3':
           stdout.writeln("Mostrar tus personajes");
