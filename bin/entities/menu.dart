@@ -133,10 +133,12 @@ abstract class Menu {
           break;
         case '2':
           stdout.writeln("Creación de personajes");
+          //nombre
           stdout.writeln(
             "Vamos a crear un personaje,empecemos por el nombre¿Cual será?",
           );
           String nombrePersonaje = stdin.readLineSync() ?? 'Drizt';
+          //stats
           stdout.writeln(
             "Ahora vamos con las estadisticas,puedes elegir si todas serán aleatorias(tiradas d20) o usar la numeración estandar en este orden(15,12,14,10,13,8)",
           );
@@ -151,27 +153,32 @@ abstract class Menu {
               stats.add(Random().nextInt(20) + 1);
             }
           }
+          //raza
           stdout.writeln(
             "Elige una raza:1.Humano,2.Elfo,3.Orco,4.Enano,5.Gnomo,6.Semielfo",
           );
           numerosElegir = stdin.readLineSync() ?? '1';
           int numeroRaza = int.tryParse(numerosElegir) ?? 1;
           String raza = recogerRaza(numeroRaza);
+          //trasfondo
           stdout.writeln(
             "Elige un transfondo:1.Soldado,2.Explorador,3.Mercenario",
           );
           numerosElegir = stdin.readLineSync() ?? '1';
           int numeroTrasfondo = int.tryParse(numerosElegir) ?? 1;
           String trasfondo = recogerTrasfondo(numeroTrasfondo);
+          //alineamiento
           stdout.writeln("Elige un alineamiento:1.Bueno,2.Neutral,3.Maligno");
           numerosElegir = stdin.readLineSync() ?? '1';
           int numeroAlineamiento = int.tryParse(numerosElegir) ?? 1;
           String alineamiento = recogerAlineamiento(numeroAlineamiento);
-          //TO DO: Elegir clase;
+          //clase
           stdout.writeln(
             'Elige una clase:1.Barbaro,2.Bardo,3.Clerigo,4.Mago,5.Paladín,6.Pícaro',
           );
-
+          numerosElegir = stdin.readLineSync() ?? '1';
+          int numeroClase = int.tryParse(numerosElegir) ?? 1;
+          String clase = recogerClase(numeroClase);
           break;
         case '3':
           stdout.writeln("Mostrar tus personajes");
@@ -267,6 +274,28 @@ abstract class Menu {
       default:
         //por defecto,devuelve Bueno
         return 'Bueno';
+    }
+  }
+
+  //metodo que recoge una clase desde un número para poder darsela a la api
+  static String recogerClase(int numeroClase) {
+    //'Elige una clase:1.Barbaro,2.Bardo,3.Clerigo,4.Mago,5.Paladín,6.Pícaro'
+    switch (numeroClase) {
+      case 1:
+        return 'barbarian';
+      case 2:
+        return 'bard';
+      case 3:
+        return 'cleric';
+      case 4:
+        return 'wizard';
+      case 5:
+        return 'paladin';
+      case 6:
+        return 'rogue';
+      default:
+        //por defecto,retorna Paladin
+        return 'paladin';
     }
   }
 }

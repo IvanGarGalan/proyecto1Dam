@@ -54,7 +54,14 @@ class PlayableCharacter {
   }
 
   //metodo que trae los datos de clase de api y ayuda a crear la clase character
-  static Future<PlayableCharacter?> obtenerPersonaje(String clase) async {
+  static Future<PlayableCharacter?> obtenerPersonaje(
+    String nombrePersonaje,
+    List<int> stats,
+    String raza,
+    String trasfondo,
+    String alineamiento,
+    String clase,
+  ) async {
     Uri url = Uri.parse('${Api.claveApi}classes/$clase');
     var respuesta = await http.get(url);
     try {
