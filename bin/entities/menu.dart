@@ -142,10 +142,10 @@ abstract class Menu {
           );
           stdout.writeln("1.Aleatorio 2.Estandar");
           String numerosElegir = stdin.readLineSync() ?? '1';
-          int numero = int.tryParse(numerosElegir) ?? 0;
+          int numeroStats = int.tryParse(numerosElegir) ?? 0;
           //lista para las estadisticas, si se eligen aleatorios,se borran y se añaden
           List<int> stats = [15, 12, 14, 10, 13, 8];
-          if (numero == 1) {
+          if (numeroStats == 1) {
             stats.clear(); //la lista se limpia
             for (var i = 0; i < 5; i++) {
               stats.add(Random().nextInt(20) + 1);
@@ -155,6 +155,9 @@ abstract class Menu {
             "Elige una raza:1.Humano,2.Elfo,3.Orco,4.Enano,5.Gnomo,6.Semielfo",
           );
           //TO DO: recoger las razas en switch
+          numerosElegir = stdin.readLineSync() ?? '1';
+          int numeroRaza = int.tryParse(numerosElegir) ?? 1;
+          String raza = recogerRaza(numeroRaza);
           stdout.writeln(
             "Elige un transfondo:1.Soldado,2.Explorador,3.Mercenario",
           );
@@ -208,5 +211,26 @@ abstract class Menu {
       return true;
     }
     return false;
+  }
+
+  //metodo que recibe un numero y devuelve la raza seleccionada en String
+  static String recogerRaza(int numeroRaza) {
+    switch (numeroRaza) {
+      case 1:
+        return 'Humano';
+      case 2:
+        return 'Elfo';
+      case 3:
+        return 'Orco';
+      case 4:
+        return 'Enano';
+      case 5:
+        return 'Gnomo';
+      case 6:
+        return 'Semielfo';
+      //por defecto,devuelve humano
+      default:
+        return 'Humano';
+    }
   }
 }
