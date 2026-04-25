@@ -179,7 +179,6 @@ abstract class Menu {
           numerosElegir = stdin.readLineSync() ?? '1';
           int numeroClase = int.tryParse(numerosElegir) ?? 1;
           String clase = recogerClase(numeroClase);
-          //print('''$nombrePersonaje,$clase,$raza,$alineamiento,$trasfondo,$stats''');
           //creacion del persoanje y añadirlo a la base de datos
           PlayableCharacter? pj = await PlayableCharacter.obtenerPersonaje(
             nombrePersonaje,
@@ -189,14 +188,14 @@ abstract class Menu {
             alineamiento,
             clase,
           );
-          /*
-          print(pj?.nombrePersonaje);
-          print(pj?.clase);
-          */
           if (pj != null) {
             stdout.writeln(
               'Se ha creado el personaje $nombrePersonaje de forma correcta.',
             );
+            bool insertado = await pj.insertarPersonaje();
+            if (insertado) {
+              stdout.writeln('Personaje guardado correctamente');
+            }
           } else {
             stdout.writeln(
               'No se ha podido crear el personaje $nombrePersonaje,vuelve a intentarlo de nuevo',

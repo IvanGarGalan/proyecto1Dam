@@ -2,7 +2,8 @@ import 'dart:io';
 import 'dart:convert';
 import 'dart:math';
 import 'package:http/http.dart' as http;
-import '../utils/api.dart';
+import 'package:mysql1/mysql1.dart';
+import '../utils/utils.dart';
 
 class PlayableCharacter {
   String? nombrePersonaje;
@@ -16,9 +17,9 @@ class PlayableCharacter {
   int? experiencia;
   String? raza;
   int? puntosVida;
-  List<String>? equipoInicial;
+  String? equipoInicial;
   String? trasfondo;
-  List<String>? hechizos;
+  String? hechizos;
   String? alineamiento;
   int? puntosGolpe;
   int? iniciativa;
@@ -51,7 +52,7 @@ class PlayableCharacter {
     puntosVida = 2 + stats[2]; //puntos de vida con constitucion
     equipoInicial = datos['starting_equipment'][0]['equipment']['name'];
     this.trasfondo = trasfondo;
-    hechizos = [];
+    hechizos = '';
     this.alineamiento = alineamiento;
     puntosGolpe = datos['hit_die'];
     iniciativa =
@@ -92,6 +93,57 @@ class PlayableCharacter {
       }
     } catch (e) {
       print(e);
+    }
+  }
+
+  //metodo que introduce el personaje en la base de datos y lo relaciona con el usuario
+  Future<bool> insertarPersonaje() async {
+    MySqlConnection conn = await Database.conexionDB();
+    try {
+      //cambiar las listas a json
+      String equipoInicialJson = jsonEncode(equipoInicial ?? []);
+      String hechizosJson = jsonEncode(hechizos ?? []);
+      String velocidadJson = jsonEncode(velocidad ?? {});
+
+      var personajeIntroducido = await conn.query(
+        'INSERT INTO personajes(nombrePersonaje,fuerza,destreza,constitucion,inteligencia,sabiduria,carisma,clase,experiencia,raza,puntosVida,equipoInicial,trasfondo,hechizos,alineamiento,puntosGolpe,iniciativa,armadura,velocidad,idioma,nivel) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+        [
+          nombrePersonaje,
+          fuerza,
+          destreza,
+          constitucion,
+          inteligencia,
+          sabiduria,
+          carisma,
+          clase,
+          experiencia,
+          raza,
+          puntosVida,
+          equipoInicialJson,
+          trasfondo,
+          hechizosJson,
+          alineamiento,
+          puntosGolpe,
+          iniciativa,
+          armadura,
+          velocidadJson,
+          idioma,
+          nivel,
+        ],
+      );
+
+      //sacar el id de personaje ya introducido
+      var idPersonaje = personajeIntroducido.insertId;
+      //insertar el idPersonaje con el usuario en base de datos
+      await conn.query(
+        'INSERT INTO usuariospersonajes(iduser,idpersonaje) VALUES (?,?)',
+        [Sesion.usuario!.idUsuario, idPersonaje],
+      );
+      await conn.close();
+      return true;
+    } catch (e) {
+      await conn.close();
+      return false;
     }
   }
 }
