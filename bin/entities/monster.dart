@@ -164,12 +164,13 @@ class Monster {
 ''');
   }
 
-  static void mostrarHistorial() async {
+  static Future<void> mostrarHistorial() async {
     var conn = await Database.conexionDB();
     var resultados = await conn.query(
-      'SELECT historial FROM historialmosntruos WHERE idUser = ?',
+      'SELECT historial FROM historialmonstruos WHERE idUser = ?',
       [Sesion.usuario!.idUsuario],
     ); //saca el historial del usuario
+    conn.close();
     if (resultados.isEmpty) {
       stdout.writeln('No hay historial todavia');
       return;
@@ -178,5 +179,19 @@ class Monster {
     stdout.writeln(resultados.first['historial']);
   }
 
-  Future<void> guardarHistorial() async {}
+  Future<void> guardarHistorial() async {
+    var conn = await Database.conexionDB();
+    try {
+      await conn.query(
+        'UPDATE historialmonstruos SET historial = CONCAT(historial,?,?) where idUser = ?',
+        ['\n', nombre, Sesion.usuario!.idUsuario],
+      );
+      conn.close();
+      stdout.writeln('Nombre guardado en el historial');
+    } catch (e) {
+      conn.close();
+      print(e);
+      stdout.writeln('No se ha podido guardar en el historial.');
+    }
+  }
 }

@@ -110,7 +110,6 @@ abstract class Menu {
         case '1':
           stdout.writeln('Introduce el nombre que quieras buscar');
           String nombre = stdin.readLineSync() ?? '';
-          print(nombre);
           Monster? monstruo = await Monster.obtenerMonstruo(
             nombre.toLowerCase().replaceAll(" ", "-"),
           ); //prepara el string a minusculas y cambia los espacios por guion -
@@ -253,7 +252,7 @@ abstract class Menu {
           int valorOpcion = int.tryParse(opcion) ?? 3;
           if (valorOpcion == 1) {
             stdout.writeln('Tu historial de monstruos');
-            Monster.mostrarHistorial();
+            await Monster.mostrarHistorial();
           } else if (valorOpcion == 2) {
             stdout.writeln(
               '¿Quieres borrar el usuario? Los datos existentes no se podrán recuperar',
