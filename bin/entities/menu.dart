@@ -215,6 +215,15 @@ abstract class Menu {
               );
               numeroDb++;
             }
+            stdout.writeln('¿Quieres imprimir un personaje?');
+            stdout.writeln('1.Si 2.No');
+            String opcion = stdin.readLineSync() ?? '2';
+            int numeroOpcion = int.tryParse(opcion) ?? 2;
+            if (numeroOpcion == 1) {
+              PlayableCharacter.imprimirPersonaje();
+            } else {
+              stdout.writeln('No se ha imprimido ningún personaje');
+            }
           } else {
             stdout.writeln(
               'No se han podido encontrar personajes,prueba a crear un par',

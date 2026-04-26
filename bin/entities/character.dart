@@ -148,4 +148,6 @@ class PlayableCharacter {
       return false;
     }
   }
+
+  static void imprimirPersonaje() {}
 }
