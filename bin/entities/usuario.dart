@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import '../utils/utils.dart';
 import 'package:mysql1/mysql1.dart';
 
@@ -23,6 +25,7 @@ class Usuario {
     );
     bool existe = respuesta.isNotEmpty;
     if (existe) {
+      conn.close();
       return false; //usuario existe,no se registra
     } else {
       //como el usuario no existe,se guarda
@@ -30,15 +33,45 @@ class Usuario {
         'INSERT INTO usuarios(nombreReal,nombreUsuario,contrasenna) VALUES (?,?,?)',
         [datos['nombre'], datos['registro'], datos['contra']],
       );
+      print('ID insertado: ${datosId.insertId}');
       //creacion del historial de monstruos
+      var idUser = datosId.insertId;
       await conn.query(
-        'INSERT INTO historialmonstruos(historial,idUser) VALUES(?,?,?)',
-        ['', datosId.insertId],
+        'INSERT INTO historialmonstruos(historial,idUser) VALUES(?,?)',
+        ['', idUser],
       ); //id de usuario y datos en blanco
       await conn.close();
       return true;
     }
   }
 
-  static Future<void> borrarUsuario(int? idUsuario) async {}
+  static Future<bool> borrarUsuario() async {
+    var conn = await Database.conexionDB();
+    try {
+      //BORRAR PRIMERO LOS PERSONAJES
+      await conn.query(
+        'DELETE FROM personajes WHERE idPersonaje IN(SELECT idpersonaje FROM usuariospersonajes WHERE iduser = ?)',
+        [Sesion.usuario!.idUsuario],
+      );
+      //BORRAR LAS UNIONES DE PERSONAJES CON USUARIOS
+      await conn.query('DELETE FROM usuariospersonajes WHERE iduser = ?', [
+        Sesion.usuario!.idUsuario,
+      ]);
+      //BORRAR EL HISTORIAL DE MOSNTRUOS
+      await conn.query('DELETE FROM historialmonstruos WHERE idUser = ?', [
+        Sesion.usuario!.idUsuario,
+      ]);
+      //por ultimo, se borra el usuario
+      await conn.query('DELETE FROM usuarios WHERE idUsuario = ?', [
+        Sesion.usuario!.idUsuario,
+      ]);
+      return true;
+    } catch (e) {
+      print(e);
+      stdout.writeln('No se han podido borrar los datos');
+      return false;
+    } finally {
+      conn.close();
+    }
+  }
 }

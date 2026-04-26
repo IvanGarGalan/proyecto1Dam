@@ -261,11 +261,17 @@ abstract class Menu {
             opcion = stdin.readLineSync() ?? '';
             int opcionBorrar = int.tryParse(opcion) ?? 2;
             if (opcionBorrar == 1) {
-              await Usuario.borrarUsuario(Sesion.usuario!.idUsuario);
+              bool borrado = await Usuario.borrarUsuario();
+              if (borrado) {
+                stdout.writeln('Se ha borrado tu usuario correctamente');
+                //para salir directamente al menu de inicio
+                salida = true;
+              } else {
+                stdout.writeln('No se han podido borrar los datos');
+              }
             } else {
               stdout.writeln('No se han borrado los datos');
             }
-            //borrar usuario
           } else {
             stdout.writeln('Se ha salido del menu o se ha elegido otra opción');
           }
