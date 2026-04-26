@@ -204,7 +204,20 @@ abstract class Menu {
           break;
         case '3':
           stdout.writeln("Mostrar tus personajes");
-          print('WIP');
+          List<PlayableCharacter>? personajes = await mostarPersonajes();
+          if (personajes != null && personajes.isNotEmpty) {
+            stdout.writeln('Se han encontrado los siguientes personajes');
+            for (var personaje in personajes) {
+              stdout.writeln(
+                'Nombre: ${personaje.nombrePersonaje} Clase: ${personaje.clase}',
+              );
+            }
+          } else {
+            stdout.writeln(
+              'No se han podido encontrar personajes,prueba a crear un par',
+            );
+          }
+          //print('WIP');
           break;
         case '4':
           stdout.writeln("Tus opciones de usuario");
@@ -318,6 +331,28 @@ abstract class Menu {
       default:
         //por defecto,retorna Paladin
         return 'paladin';
+    }
+  }
+
+  //metodo qeu retorna una lista de personajes de la base de datos
+  static Future<List<PlayableCharacter>?> mostarPersonajes() async {
+    var conn = await Database.conexionDB();
+    try {
+      var resultados = await conn.query(
+        'SELECT nombrePersonaje,clase FROM personajes WHERE idPersonaje IN (SELECT idpersonaje FROM usuariospersonajes WHERE iduser = ?)',
+        [Sesion.usuario!.idUsuario],
+      );
+      //poner cada fila a un elemento personaje
+      List<PlayableCharacter> personajes = resultados.map((row) {
+        return PlayableCharacter.list(row['nombrePersonaje'], row['clase']);
+      }).toList();
+
+      conn.close();
+      return personajes;
+    } catch (e) {
+      print(e);
+      conn.close();
+      return null;
     }
   }
 }

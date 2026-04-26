@@ -29,6 +29,8 @@ class PlayableCharacter {
   int? nivel;
 
   PlayableCharacter();
+  //constructor para mostar personajes en una lista,solo con nombre y la clase
+  PlayableCharacter.list(this.nombrePersonaje, this.clase);
 
   //constructor que prepara los datos de la API al objeto personaje
   PlayableCharacter.datosAPI(
