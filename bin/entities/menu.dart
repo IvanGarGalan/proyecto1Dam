@@ -115,6 +115,7 @@ abstract class Menu {
             nombre.toLowerCase().replaceAll(" ", "-"),
           ); //prepara el string a minusculas y cambia los espacios por guion -
           if (monstruo != null) {
+            await monstruo.guardarHistorial();
             monstruo.imprimirInfo();
             stdout.writeln('¿Quieres imprimir la información en un archivo?');
             stdout.writeln('1.Si 2.No');
@@ -242,13 +243,27 @@ abstract class Menu {
               'No se han podido encontrar personajes,prueba a crear un par',
             );
           }
-          //print('WIP');
           break;
         case '4':
           stdout.writeln("Tus opciones de usuario");
-          //ver historial de mosntruos
-          //borrar usuario
-          print('WIP');
+          stdout.writeln('1.Ver historial de monstruos buscados');
+          stdout.writeln('2.Borrar usuario ${Sesion.usuario!.nombreUsuario}');
+          stdout.writeln('3.Salir');
+          String opcion = stdin.readLineSync() ?? '';
+          int valorOpcion = int.tryParse(opcion) ?? 3;
+          if (valorOpcion == 1) {
+            stdout.writeln('Tu historial de monstruos');
+            Monster.mostrarHistorial();
+          } else if (valorOpcion == 2) {
+            stdout.writeln(
+              '¿Quieres borrar el usuario? Los datos existentes no se podrán recuperar',
+            );
+            stdout.writeln('1.Si 2.No');
+            //borrar usuario
+          } else {
+            stdout.writeln('Se ha salido del menu o se ha elegido otra opción');
+          }
+          //print('WIP');
           break;
         case '5':
           stdout.writeln(

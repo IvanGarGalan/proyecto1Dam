@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../utils/api.dart';
+import '../utils/utils.dart';
 
 class Monster {
   String? nombre;
@@ -70,10 +70,10 @@ class Monster {
     reacciones = datos['reactions'];
   }
 
-    //Metodo que imprime los datos en un .txt
+  //Metodo que imprime los datos en un .txt
   void imprimirDatosTexto(Monster monstruo) async {
     File archivoMonstruo = File('archivo$nombre.txt');
-    
+
     archivoMonstruo.writeAsString('''
     ============Nombre $nombre==================
       Tamaño: $tamanio
@@ -108,9 +108,11 @@ class Monster {
       ''', mode: FileMode.append); //append pone mas de una linea
   }
 
-    //Metodo que trae datos de la api y crea el objeto Monstruo
+  //Metodo que trae datos de la api y crea el objeto Monstruo
   static Future<Monster?> obtenerMonstruo(String nombre) async {
-    Uri url = Uri.parse('${Api.claveApi}monsters/$nombre');//para no repetir la clave de la api todo el tiempo
+    Uri url = Uri.parse(
+      '${Api.claveApi}monsters/$nombre',
+    ); //para no repetir la clave de la api todo el tiempo
     var respuesta = await http.get(url);
     try {
       if (respuesta.statusCode == 200) {
@@ -127,7 +129,6 @@ class Monster {
     }
     return null;
   }
-
 
   //Metodo que imprime los datos del monstruo en terminal
   void imprimirInfo() {
@@ -162,4 +163,20 @@ class Monster {
       Reacciones: $reacciones
 ''');
   }
+
+  static void mostrarHistorial() async {
+    var conn = await Database.conexionDB();
+    var resultados = await conn.query(
+      'SELECT historial FROM historialmosntruos WHERE idUser = ?',
+      [Sesion.usuario!.idUsuario],
+    ); //saca el historial del usuario
+    if (resultados.isEmpty) {
+      stdout.writeln('No hay historial todavia');
+      return;
+    }
+    //muestra el resultado
+    stdout.writeln(resultados.first['historial']);
+  }
+
+  Future<void> guardarHistorial() async {}
 }

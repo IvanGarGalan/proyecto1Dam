@@ -26,10 +26,15 @@ class Usuario {
       return false; //usuario existe,no se registra
     } else {
       //como el usuario no existe,se guarda
-      await conn.query(
+      var datosId = await conn.query(
         'INSERT INTO usuarios(nombreReal,nombreUsuario,contrasenna) VALUES (?,?,?)',
         [datos['nombre'], datos['registro'], datos['contra']],
       );
+      //creacion del historial de monstruos
+      await conn.query(
+        'INSERT INTO historialmonstruos(historial,idUser) VALUES(?,?,?)',
+        ['', datosId.insertId],
+      ); //id de usuario y datos en blanco
       await conn.close();
       return true;
     }

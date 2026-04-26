@@ -15,6 +15,7 @@ abstract class Database {
       await _crearTablaUsuarios(conn);
       await _crearTablaPersonajes(conn);
       await _crearTablaUsuariosPersonajes(conn);
+      await _crearTablaHistorialMonstruos(conn);
       //await _crearUsuario(conn);
     } catch (e) {
       print(e);
@@ -88,6 +89,16 @@ abstract class Database {
     iduser INT NOT NULL,
     idpersonaje INT NOT NULL
     )""");
+  }
+
+  static Future<void> _crearTablaHistorialMonstruos(
+    MySqlConnection conn,
+  ) async {
+    await conn.query('''CREATE TABLE IF NOT EXISTS historialmonstruos(
+      idHistorial INT PRIMARY KEY AUTO_INCREMENT,
+      historial TEXT NOT NULL,
+      idUser INT NOT NULL
+    )''');
   }
 
   //metodo que inserta un usuario en la base de datos(PRUEBA)
