@@ -170,7 +170,7 @@ class PlayableCharacter {
       Puntos de vida: ${resultados.first[11]} 
       Trasfondo: ${resultados.first[13]}
       Alineamiento: ${resultados.first[15]} 
-      Puntoa de golpe: ${resultados.first[16]} 
+      Puntos de golpe: ${resultados.first[16]} 
       Iniciativa: ${resultados.first[17]} 
       Armadura: ${resultados.first[18]} 
       Nivel: ${resultados.first[21]}
