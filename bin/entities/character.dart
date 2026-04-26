@@ -152,8 +152,13 @@ class PlayableCharacter {
   static Future<bool> imprimirPersonaje(String personajeNombre) async {
     var conn = await Database.conexionDB();
     try {
-      await conn.query('');
+      var resultados = await conn.query(
+        'SELECT * FROM personajes WHERE nombrePersonaje = ?',
+        [personajeNombre],
+      );
       conn.close();
+      //impresion del personaje
+
       return true;
     } catch (e) {
       print(e);
