@@ -138,6 +138,14 @@ abstract class Menu {
             "Vamos a crear un personaje,empecemos por el nombre¿Cual será?",
           );
           String nombrePersonaje = stdin.readLineSync() ?? 'Drizt';
+          //para que no se repita el nombre
+          bool repetido = await nombreRepetido(nombrePersonaje);
+          if (repetido) {
+            stdout.writeln(
+              'Ya has nombrado un personaje con este nombre, prueba a insertar otro',
+            );
+            break;
+          }
           //stats
           stdout.writeln(
             "Ahora vamos con las estadisticas,puedes elegir si todas serán aleatorias(tiradas d20) o usar la numeración estandar en este orden(15,12,14,10,13,8)",
@@ -407,6 +415,24 @@ abstract class Menu {
       print(e);
       conn.close();
       return null;
+    }
+  }
+
+  //metodo que comprueba si un nombre de personaje ya esta registrado en un usuario,para que no se repita
+  static Future<bool> nombreRepetido(String nombrePersonaje) async {
+    var conn = await Database.conexionDB();
+    try {
+      var nombre = await conn.query(
+        'SELECT idPersonaje,nombrePersonaje FROM personajes WHERE nombrePersonaje = ? AND idPersonaje IN(SELECT idpersonaje FROM usuariospersonajes WHERE iduser = ?)',
+        [nombrePersonaje, Sesion.usuario!.idUsuario],
+      );
+      // si el nombre está registrado,devuelve true,si no, devuelve falso
+      return nombre.isNotEmpty;
+    } catch (e) {
+      print(e);
+      return false;
+    } finally {
+      await conn.close();
     }
   }
 }
