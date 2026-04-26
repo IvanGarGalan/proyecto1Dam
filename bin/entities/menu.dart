@@ -259,6 +259,13 @@ abstract class Menu {
               '¿Quieres borrar el usuario? Los datos existentes no se podrán recuperar',
             );
             stdout.writeln('1.Si 2.No');
+            opcion = stdin.readLineSync() ?? '';
+            int opcionBorrar = int.tryParse(opcion) ?? 2;
+            if (opcionBorrar == 1) {
+              await Usuario.borrarUsuario(Sesion.usuario!.idUsuario);
+            } else {
+              stdout.writeln('No se han borrado los datos');
+            }
             //borrar usuario
           } else {
             stdout.writeln('Se ha salido del menu o se ha elegido otra opción');

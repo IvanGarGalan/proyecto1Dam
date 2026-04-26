@@ -39,4 +39,6 @@ class Usuario {
       return true;
     }
   }
+
+  static Future<void> borrarUsuario(int? idUsuario) async {}
 }
