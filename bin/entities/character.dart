@@ -158,7 +158,7 @@ class PlayableCharacter {
       );
       conn.close();
       //impresion del personaje
-
+      print('Nombre ${resultados.first[1]}');
       return true;
     } catch (e) {
       print(e);
