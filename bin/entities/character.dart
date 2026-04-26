@@ -4,15 +4,10 @@ import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'package:mysql1/mysql1.dart';
 import '../utils/utils.dart';
+import 'characterentity.dart';
 
-class PlayableCharacter {
+class PlayableCharacter extends CharacterEntity {
   String? nombrePersonaje;
-  int? fuerza;
-  int? destreza;
-  int? constitucion;
-  int? inteligencia;
-  int? sabiduria;
-  int? carisma;
   String? clase;
   int? experiencia;
   String? raza;
@@ -21,11 +16,8 @@ class PlayableCharacter {
   String? trasfondo;
   String? hechizos;
   String? alineamiento;
-  int? puntosGolpe;
   int? iniciativa;
   int? armadura;
-  Map? velocidad;
-  String? idioma;
   int? nivel;
 
   PlayableCharacter();

@@ -2,33 +2,22 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../utils/utils.dart';
+import 'characterentity.dart';
 
-class Monster {
+class Monster extends CharacterEntity {
   String? nombre;
   String? tamanio;
   String? tipo;
   String? aliniamiento;
-  int? puntosGolpe;
   String? dadosGolpe;
   String? tiradaDanio;
   List? claseArmadura;
-  Map? velocidad;
-  int? fuerza;
-  int? destreza;
-  int? constitucion;
-  int? inteligencia;
-  int? sabiduria;
-  int? carisma;
   int? experiencia;
   List? proficiencias;
   List<dynamic>? vulnerabilidades;
-  List<dynamic>?
-  resistenciasDanio; //TO DO: TERMINAR ESTOS TRES,PONER LISTA CORRECTAMETE
-  List<dynamic>?
-  inmunidadDanio; //TO DO: TERMINAR ESTOS TRES,PONER LISTA CORRECTAMETE
-  List<dynamic>?
-  inmunidadCondicion; //TO DO: TERMINAR ESTOS TRES,PONER LISTA CORRECTAMETE
-  String? idioma;
+  List<dynamic>? resistenciasDanio;
+  List<dynamic>? inmunidadDanio;
+  List<dynamic>? inmunidadCondicion;
   int? nivelDesafio;
   int? bonusCompetencia;
   List? formas;
