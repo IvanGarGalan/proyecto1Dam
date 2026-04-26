@@ -149,5 +149,16 @@ class PlayableCharacter {
     }
   }
 
-  static void imprimirPersonaje() {}
+  static Future<bool> imprimirPersonaje(String personajeNombre) async {
+    var conn = await Database.conexionDB();
+    try {
+      await conn.query('');
+      conn.close();
+      return true;
+    } catch (e) {
+      print(e);
+      conn.close();
+      return false;
+    }
+  }
 }
