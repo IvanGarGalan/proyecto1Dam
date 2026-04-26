@@ -164,15 +164,32 @@ class PlayableCharacter {
 
       archivoPersonaje.writeAsString('''
 
+    ============Nombre: ${resultados.first[1]}==================
+      Clase: ${resultados.first[8]}
+      Raza: ${resultados.first[10]} 
+      Puntos de vida: ${resultados.first[11]} 
+      Trasfondo: ${resultados.first[13]}
+      Alineamiento: ${resultados.first[15]} 
+      Puntoa de golpe: ${resultados.first[16]} 
+      Iniciativa: ${resultados.first[17]} 
+      Armadura: ${resultados.first[18]} 
+      Nivel: ${resultados.first[21]}
+      Experiencia:${resultados.first[9]} puntos
+      
+    ===Estadisticas:============================
+        -Fuerza: ${resultados.first[2]}
+        -Destreza: ${resultados.first[3]}
+        -Constitución: ${resultados.first[4]}
+        -Inteligencia: ${resultados.first[5]}
+        -Sabiduria: ${resultados.first[6]}
+        -Carisma: ${resultados.first[7]}
 
-
-
-
-
-
-
-
-''');
+    ============================================  
+      Equipo Inicial: ${resultados.first[12]}
+      Hechizos: ${resultados.first[14]} 
+      Velocidad: ${resultados.first[19]} 
+      Idioma: ${resultados.first[20]} 
+      ''', mode: FileMode.append);
 
       return true;
     } catch (e) {

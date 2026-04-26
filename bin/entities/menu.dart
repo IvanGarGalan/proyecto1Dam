@@ -246,6 +246,8 @@ abstract class Menu {
           break;
         case '4':
           stdout.writeln("Tus opciones de usuario");
+          //ver historial de mosntruos
+          //borrar usuario
           print('WIP');
           break;
         case '5':
