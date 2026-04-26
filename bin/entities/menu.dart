@@ -207,10 +207,13 @@ abstract class Menu {
           List<PlayableCharacter>? personajes = await mostarPersonajes();
           if (personajes != null && personajes.isNotEmpty) {
             stdout.writeln('Se han encontrado los siguientes personajes');
+            //para poder mostrar numeros en la lista y luego poder imprimirlos
+            int numeroDb = 1;
             for (var personaje in personajes) {
               stdout.writeln(
-                'Nombre: ${personaje.nombrePersonaje} Clase: ${personaje.clase}',
+                'Número:$numeroDb Nombre: ${personaje.nombrePersonaje} Clase: ${personaje.clase}',
               );
+              numeroDb++;
             }
           } else {
             stdout.writeln(
