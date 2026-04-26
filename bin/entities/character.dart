@@ -149,7 +149,8 @@ class PlayableCharacter {
     }
   }
 
-  static Future<bool> imprimirPersonaje(String personajeNombre) async {
+  //metodo que imprime todos los datos de un personaje en txt
+  static Future<bool> imprimirPersonajeTexto(String personajeNombre) async {
     var conn = await Database.conexionDB();
     try {
       var resultados = await conn.query(
@@ -159,6 +160,20 @@ class PlayableCharacter {
       conn.close();
       //impresion del personaje
       print('Nombre ${resultados.first[1]}');
+      File archivoPersonaje = File('Hoja de personaje de $personajeNombre');
+
+      archivoPersonaje.writeAsString('''
+
+
+
+
+
+
+
+
+
+''');
+
       return true;
     } catch (e) {
       print(e);

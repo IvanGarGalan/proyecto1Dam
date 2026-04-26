@@ -223,7 +223,9 @@ abstract class Menu {
               stdout.writeln('Elije el personaje');
               String personajeNombre = stdin.readLineSync() ?? '';
               //si se imprime el personaje,devolvera true
-              if (await PlayableCharacter.imprimirPersonaje(personajeNombre)) {
+              if (await PlayableCharacter.imprimirPersonajeTexto(
+                personajeNombre,
+              )) {
                 stdout.writeln(
                   '$personajeNombre se ha imprimido correctamente',
                 );
