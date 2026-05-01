@@ -68,7 +68,7 @@ class PlayableCharacter extends CharacterEntity {
     String alineamiento,
     String clase,
   ) async {
-    Uri url = Uri.parse('${Api.claveApi}classes/$clase');
+    Uri url = Uri.parse('https://www.dnd5eapi.co/api/2014/classes/$clase');
     var respuesta = await http.get(url);
     try {
       if (respuesta.statusCode == 200) {

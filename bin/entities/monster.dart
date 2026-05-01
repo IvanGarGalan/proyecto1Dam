@@ -100,7 +100,7 @@ class Monster extends CharacterEntity {
   //Metodo que trae datos de la api y crea el objeto Monstruo
   static Future<Monster?> obtenerMonstruo(String nombre) async {
     Uri url = Uri.parse(
-      '${Api.claveApi}monsters/$nombre',
+      'https://www.dnd5eapi.co/api/2014/monsters/$nombre',
     ); //para no repetir la clave de la api todo el tiempo
     var respuesta = await http.get(url);
     try {
