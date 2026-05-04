@@ -33,7 +33,6 @@ class Usuario {
         'INSERT INTO usuarios(nombreReal,nombreUsuario,contrasenna) VALUES (?,?,?)',
         [datos['nombre'], datos['registro'], datos['contra']],
       );
-      print('ID insertado: ${datosId.insertId}');
       //creacion del historial de monstruos
       var idUser = datosId.insertId;
       await conn.query(
